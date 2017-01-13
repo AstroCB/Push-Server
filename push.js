@@ -32,6 +32,7 @@ function sendNotif(appId, body, title, tokens) {
 
     service.send(note, tokens).then(result => {
         console.log(`Notifications successfully delivered to ${result.sent.length} of ${tokens.length} registered devices`);
+        console.log(result.failed);
         service.shutdown();
     });
 }
