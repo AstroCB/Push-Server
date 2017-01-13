@@ -29,7 +29,8 @@ function sendNotif(appId, body, title, tokens) {
         "body": body
     });
     note.topic = appId;
-
+    console.log(body);
+    console.log(tokens[0]);
     service.send(note, tokens).then(result => {
         console.log(`Notifications successfully delivered to ${(result.sent.length * 1.0 / tokens.length)*100}% of ${tokens.length} registered devices`);
         service.shutdown();
