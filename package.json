@@ -1,0 +1,17 @@
+{
+  "name": "push-server",
+  "version": "1.0.0",
+  "description": "A server for handling remote push notifications and registrations for my iOS apps.",
+  "main": "index.js",
+  "scripts": {
+    "listen": "node server.js",
+    "push": "node push.js"
+  },
+  "author": "Cameron Bernhardt (AstroCB)",
+  "license": "MIT",
+  "dependencies": {
+    "apn": "^2.1.2",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  }
+}
