@@ -17,7 +17,7 @@ const service = new apn.Provider(options);
 exports.sendToAll = function(appId, body, title) {
     tokens.getTokens(appId, function(err, tokens) {
         if (!err) {
-            sendNotif(body, title, tokens);
+            sendNotif(appId, body, title, tokens);
         }
     });
 }
@@ -29,8 +29,7 @@ function sendNotif(appId, body, title, tokens) {
         "body": body
     });
     note.topic = appId;
-    console.log(body);
-    console.log(tokens[0]);
+    
     service.send(note, tokens).then(result => {
         console.log(`Notifications successfully delivered to ${(result.sent.length * 1.0 / tokens.length)*100}% of ${tokens.length} registered devices`);
         service.shutdown();

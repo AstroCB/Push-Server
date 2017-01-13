@@ -28,7 +28,6 @@ app.post("/newtoken", function(req, res) {
 
 // Listen for new push notification requests
 app.post("/newpush", function(req, res) {
-    console.log(req);
     if (req.body) {
         push.sendToAll(req.body.appIdentifier, req.body.body, req.body.title);
         res.sendStatus(200);
