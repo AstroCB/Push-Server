@@ -8,7 +8,7 @@ const options = {
         keyId: "V4JZA79DDM",
         teamId: "VFK9RBFX9F",
     },
-    production: false,
+    production: true,
 };
 const service = new apn.Provider(options);
 
