@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Listen for new tokens
-app.post("/newtoken", function(req, res) {
+app.post("/newtoken", (req, res) => {
     if (req.body) {
         addToken(req.body.token.toLowerCase(), req.body.bundleId);
         res.sendStatus(200);
@@ -27,7 +27,7 @@ app.post("/newtoken", function(req, res) {
 });
 
 // Listen for new push notification requests
-app.post("/newpush", function(req, res) {
+app.post("/newpush", (req, res) => {
     if (req.body) {
         push.sendToAll(req.body.appIdentifier, req.body.body, req.body.title);
         res.sendStatus(200);
@@ -39,10 +39,10 @@ app.post("/newpush", function(req, res) {
 });
 
 function addToken(token, bundleId) {
-    var now = (new Date()).toISOString(); // For record-keeping
-    fs.readFile("tokens.json", function(err, data) {
+    const now = (new Date()).toISOString(); // For record-keeping
+    fs.readFile("tokens.json", (err, data) => {
         if (!err) {
-            var storage = JSON.parse(data);
+            let storage = JSON.parse(data);
             if (storage[bundleId][token]) { // Token already exists: update
                 storage[bundleId][token].updatedAt = now;
             } else {
@@ -51,7 +51,7 @@ function addToken(token, bundleId) {
                     "updatedAt": now
                 };
             }
-            fs.writeFile("tokens.json", JSON.stringify(storage), function(err) {
+            fs.writeFile("tokens.json", JSON.stringify(storage), (err) => {
                 if (!err) {
                     console.log(`Database updated with token ${token} at ${now}`);
                 } else {

@@ -3,19 +3,19 @@ const fs = require("fs");
 const tokens = require("./tokens");
 
 const options = {
-    token: {
-        key: "apns_push_key.p8",
-        keyId: "V4JZA79DDM",
-        teamId: "VFK9RBFX9F",
+    "token": {
+        "key": "apns_push_key.p8",
+        "keyId": "V4JZA79DDM",
+        "teamId": "VFK9RBFX9F",
     },
-    production: true,
+    "production": true,
 };
 const service = new apn.Provider(options);
 
 // Sends an notification to all registered devices (title optional)
 // appId is the bundle identifier for the desired app
-exports.sendToAll = function(appId, body, title) {
-    tokens.getTokens(appId, function(err, tokens) {
+exports.sendToAll = (appId, body, title) => {
+    tokens.getTokens(appId, (err, tokens) => {
         if (!err) {
             sendNotif(appId, body, title, tokens);
         }
