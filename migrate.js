@@ -22,7 +22,7 @@ for (let i = 0; i < bundles.length; i++) {
     }
 }
 // Write to file after parsing has finished
-fs.writeFile("backup.json", JSON.stringify(newData), function(err) {
+fs.writeFile("backup.json", JSON.stringify(newData), (err) => {
     if (!err) {
         console.log("Data successfully migrated to tokens.json");
     } else {

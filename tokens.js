@@ -98,5 +98,5 @@ exports.getRawTokenData = (callback) => {
         } else {
             callback(err);
         }
-    })
+    });
 }
