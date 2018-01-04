@@ -5,7 +5,7 @@ const fs = require("fs");
 let newData = {};
 
 // Bundle identifiers/directory names of apps to be migrated
-const bundles = ["com.cameronbernhardt.AB", "com.cameronbernhardt.Astronauts"];
+const bundles = [];
 // Parse each directory for new info and store in newData
 for (let i = 0; i < bundles.length; i++) {
     const b = bundles[i];
@@ -22,7 +22,7 @@ for (let i = 0; i < bundles.length; i++) {
     }
 }
 // Write to file after parsing has finished
-fs.writeFile("tokens.json", JSON.stringify(newData), function(err) {
+fs.writeFile("backup.json", JSON.stringify(newData), function(err) {
     if (!err) {
         console.log("Data successfully migrated to tokens.json");
     } else {

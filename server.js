@@ -30,7 +30,7 @@ app.post("/newtoken", (req, res) => {
 // Listen for new push notification requests
 app.post("/newpush", (req, res) => {
     if (req.body) {
-        push.sendToAll(req.body.appIdentifier, req.body.body, req.body.title);
+        push.sendToAll(req.body.bundleId, req.body.body, req.body.title);
         res.sendStatus(200);
     } else {
         res.status(500).send({

@@ -49,7 +49,12 @@ exports.addToken = (token, bundleId) => {
         if (!err) {
             const backup = data; // In case update fails
 
-            let storage = JSON.parse(data);
+            let storage = JSON.parse(data) || {};
+
+            if (!storage[bundleId]) { // New bundle ID: needs to be added 
+                storage[bundleId] = {};
+            }
+
             if (storage[bundleId][token]) { // Token already exists: update
                 storage[bundleId][token].updatedAt = now;
             } else { // Create new token
