@@ -2,12 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const push = require("./push.js");
+const tokens = require("./tokens");
 const app = express();
 
 // Configure server settings
 app.set("port", (process.env.PORT || 3000));
-app.listen(app.get("port"), function() {
-    console.log(`Listening on port ${app.get("port")}`);
+app.listen(app.get("port"), () => {
+    console.log(`Listening on port ${app.get("port")}...`);
 });
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({
 // Listen for new tokens
 app.post("/newtoken", (req, res) => {
     if (req.body) {
-        addToken(req.body.token.toLowerCase(), req.body.bundleId);
+        tokens.addToken(req.body.token.toLowerCase(), req.body.bundleId);
         res.sendStatus(200);
     } else {
         res.status(500).send({
@@ -37,29 +38,3 @@ app.post("/newpush", (req, res) => {
         });
     }
 });
-
-function addToken(token, bundleId) {
-    const now = (new Date()).toISOString(); // For record-keeping
-    fs.readFile("tokens.json", (err, data) => {
-        if (!err) {
-            let storage = JSON.parse(data);
-            if (storage[bundleId][token]) { // Token already exists: update
-                storage[bundleId][token].updatedAt = now;
-            } else {
-                storage[bundleId][token] = {
-                    "createdAt": now,
-                    "updatedAt": now
-                };
-            }
-            fs.writeFile("tokens.json", JSON.stringify(storage), (err) => {
-                if (!err) {
-                    console.log(`Database updated with token ${token} at ${now}`);
-                } else {
-                    console.log(`Token ${token} not added: ${err}`);
-                }
-            });
-        } else {
-            console.log("Tokens file cannot be read");
-        }
-    });
-}

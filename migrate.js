@@ -2,17 +2,17 @@
 const fs = require("fs");
 
 // Holds new data to be written to tokens.json
-var newData = {};
+let newData = {};
 
-// Bundle identifiers/directory names of apps
+// Bundle identifiers/directory names of apps to be migrated
 const bundles = ["com.cameronbernhardt.AB", "com.cameronbernhardt.Astronauts"];
 // Parse each directory for new info and store in newData
-for (var i = 0; i < bundles.length; i++) {
+for (let i = 0; i < bundles.length; i++) {
     const b = bundles[i];
     newData[b] = {}; // Store device data here hashed by device token
     const data = fs.readFileSync(`LegacyParseData/${b}/_Installation.json`);
     const devices = JSON.parse(data).results; // Array of installations
-    for (var j = 0; j < devices.length; j++) {
+    for (let j = 0; j < devices.length; j++) {
         const dev = devices[j];
         // Hash devices by token to created/updated values (don't really need anything else)
         newData[b][dev.deviceToken] = {

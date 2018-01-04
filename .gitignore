@@ -1,2 +1,4 @@
 LegacyParseData/
 node_modules/
+credentials.js
+.vscode
