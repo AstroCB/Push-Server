@@ -57,4 +57,4 @@ By default, [`tokens.js`](tokens.js) will use `backup.json` as a fallback if it 
 
 If you're coming from now-defunct Parse, you can use [`migrate.js`](migrate.js) to create the backup file for import. Just place your LegacyParseData file in your clone of this repo and update the list of bundle identifiers to extract from.
 
-You can create a new backup file from what's currently stored in the Memcachier cache at any time by running [`archive.js`](archive.js), or use the [`getRawTokenData`](tokens.js#83) method in `tokens.js` to obtain this data programmatically.
+You can create a new backup file from what's currently stored in the Memcachier cache at any time by running [`archive.js`](archive.js), or use the [`getRawTokenData`](tokens.js#L93) method in `tokens.js` to obtain this data programmatically.
