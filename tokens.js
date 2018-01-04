@@ -1,5 +1,10 @@
 const fs = require("fs");
-const credentials = require("./credentials");
+let credentials;
+try {
+    credentials = require("./credentials");
+} catch (e) { // Deployed remotely
+    credentials = process.env;
+}
 // External storage API (Memcachier) (requires credentials)
 const mem = require("memjs").Client.create(credentials.MEMCACHIER_SERVERS, {
     "username": credentials.MEMCACHIER_USERNAME,

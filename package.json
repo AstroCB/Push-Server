@@ -1,11 +1,11 @@
 {
   "name": "push-server",
   "version": "1.0.0",
-  "description": "A server for handling remote push notifications and registrations for my iOS apps.",
+  "description": "A server for handling remote push notifications and registrations for iOS apps.",
   "main": "index.js",
   "scripts": {
-    "listen": "node server.js",
-    "push": "node push.js"
+    "start": "node server.js",
+    "archive": "node archive.js"
   },
   "author": "Cameron Bernhardt (AstroCB)",
   "license": "MIT",
