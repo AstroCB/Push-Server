@@ -1,4 +1,4 @@
-# Push-Server
+# Push Server
 
 This server can be used as a central location for handling the distribution of push notifications to iOS applications.
 

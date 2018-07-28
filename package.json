@@ -10,9 +10,9 @@
   "author": "Cameron Bernhardt (AstroCB)",
   "license": "MIT",
   "dependencies": {
-    "apn": "^2.1.2",
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
+    "apn": "^2.2.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
     "memjs": "^1.1.0"
   }
 }
