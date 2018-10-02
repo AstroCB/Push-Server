@@ -7,10 +7,10 @@ exports.get = (_, cb) => {
     fs.readFile(file, (err, data) => {
         if (err) { return cb(err); }
 
-        cb(JSON.parse(data));
+        cb(null, JSON.parse(data));
     });
 };
 
-exports.set = (_, val, cb) => {
+exports.set = (_, val, __, cb) => {
     fs.writeFile(file, JSON.stringify(val), cb);
 };
