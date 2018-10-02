@@ -5,11 +5,17 @@ try {
 } catch (e) { // Deployed remotely
     credentials = process.env;
 }
-// External storage API (Memcachier) (requires credentials)
-const mem = require("memjs").Client.create(credentials.MEMCACHIER_SERVERS, {
-    "username": credentials.MEMCACHIER_USERNAME,
-    "password": credentials.MEMCACHIER_PASSWORD
-});
+
+if (credentials.USES_MEMCACHIER) {
+    // External storage API (Memcachier) (requires credentials)
+    require("memjs").Client.create(credentials.MEMCACHIER_SERVERS, {
+        "username": credentials.MEMCACHIER_USERNAME,
+        "password": credentials.MEMCACHIER_PASSWORD
+    });
+} else {
+    // Use disk for storage
+    mem = require("./disk");
+}
 
 // Grab tokens from storage
 // Requires app bundle identifier (maps to tokens for that app in storage)
