@@ -8,7 +8,7 @@ try {
 
 if (credentials.USES_MEMCACHIER) {
     // External storage API (Memcachier) (requires credentials)
-    require("memjs").Client.create(credentials.MEMCACHIER_SERVERS, {
+    mem = require("memjs").Client.create(credentials.MEMCACHIER_SERVERS, {
         "username": credentials.MEMCACHIER_USERNAME,
         "password": credentials.MEMCACHIER_PASSWORD
     });
