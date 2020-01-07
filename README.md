@@ -4,7 +4,7 @@ This server can be used as a central location for handling the distribution of p
 
 It has two endpoints: `/newtoken` and `/newpush`, which are used to record newly-registered device tokens and send notifications to the devices associated with these tokens, respectively.
 
-For notifications to be sent, you'll have to clone this repo and add an APNS push key (named `apns_push_key.p8`) in the root directory. You'll then need to store the following either as environment variables or as exported variables in a file called `config.js` (also in the root directory of this repo):
+For notifications to be sent, you'll have to clone this repo and add an APNS push key named `apns_push_key.p8` in the root directory (a dummy example is included – yours should be kept private). You'll then need to store the following either as environment variables or as exported variables in a file called `config.js` (also in the root directory of this repo):
 
 - `keyId`
 - `teamId`
@@ -57,6 +57,8 @@ To send a push notification, send a POST request to `/newpush` with the followin
 - `title` *(optional)*: Title of the push notification (displays in bold above the body on newer iOS versions)
 
 If successful, the request will return status code 200 and send out the notification to all registered devices stored in the cache.
+
+If you wish to be more specific, you can utilize the `/newsegmentedpush` endpoint, which takes the same fields as above, but requires an additional field `tokens`, an array of tokens representing the segment of users to which the notification should be delivered.
 
 ## Migration
 

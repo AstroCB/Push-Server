@@ -2,3 +2,4 @@ LegacyParseData/
 node_modules/
 config.js
 .vscode
+backup.json

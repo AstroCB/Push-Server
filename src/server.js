@@ -50,3 +50,27 @@ app.post("/newpush", (req, res) => {
         });
     }
 });
+
+// Listen for new push notification requests to a specific segment of users
+app.post("/newsegmentedpush", (req, res) => {
+    if (req.body) {
+        if (req.body.bundleId && req.body.body && req.body.tokens) {
+            if (Array.isArray(req.body.tokens)) {
+                push.sendNotif(req.body.bundleId, req.body.body, req.body.title, req.body.tokens);
+                res.sendStatus(200);
+            } else {
+                res.status(500).send({
+                    "error": "tokens field must be an array of tokens"
+                });
+            }
+        } else {
+            res.status(500).send({
+                "error": "Need bundleId, body, and token fields"
+            });
+        }
+    } else {
+        res.status(500).send({
+            "error": "Error receiving message data"
+        });
+    }
+});

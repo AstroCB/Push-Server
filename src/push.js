@@ -23,7 +23,7 @@ const service = new apn.Provider(options);
 exports.sendToAll = (appId, body, title) => {
     tokenUtils.getTokens(appId, (err, tokens) => {
         if (!err) {
-            sendNotif(appId, body, title, tokens);
+            this.sendNotif(appId, body, title, tokens);
         } else {
             console.log(`Failed to send push notification "${body}" with error: ${err}`);
         }
@@ -31,7 +31,7 @@ exports.sendToAll = (appId, body, title) => {
 }
 
 // Internal notification helper function
-function sendNotif(appId, body, title, tokens) {
+exports.sendNotif = (appId, body, title, tokens) => {
     const note = title ? new apn.Notification({
         "title": title,
         "body": body
