@@ -4,7 +4,7 @@ const tokenUtils = require("./tokens");
 let config;
 try {
     config = require("../config");
-} catch (e) { // Deployed
+} catch (e) { // Deployed/using env vars
     config = process.env;
 }
 
@@ -32,10 +32,10 @@ exports.sendToAll = (appId, body, title) => {
 
 // Internal notification helper function
 function sendNotif(appId, body, title, tokens) {
-    const note = new apn.Notification({
+    const note = title ? new apn.Notification({
         "title": title,
         "body": body
-    });
+    }) : new apn.Notification({ "body": body });
     note.topic = appId;
 
     service.send(note, tokens).then(result => {

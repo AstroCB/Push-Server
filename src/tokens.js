@@ -2,7 +2,7 @@ const fs = require("fs");
 let config;
 try {
     config = require("../config");
-} catch (e) { // Deployed remotely
+} catch (e) { // Deployed remotely/using env vars
     config = process.env;
 }
 
