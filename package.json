@@ -4,8 +4,8 @@
   "description": "A server for handling remote push notifications and registrations for iOS apps.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "archive": "node archive.js"
+    "start": "node src/server.js",
+    "archive": "node src/archive.js"
   },
   "author": "Cameron Bernhardt (AstroCB)",
   "license": "MIT",

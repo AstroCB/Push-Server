@@ -1,16 +1,16 @@
 const fs = require("fs");
-let credentials;
+let config;
 try {
-    credentials = require("./credentials");
+    config = require("../config");
 } catch (e) { // Deployed remotely
-    credentials = process.env;
+    config = process.env;
 }
 
-if (credentials.USES_MEMCACHIER) {
-    // External storage API (Memcachier) (requires credentials)
-    mem = require("memjs").Client.create(credentials.MEMCACHIER_SERVERS, {
-        "username": credentials.MEMCACHIER_USERNAME,
-        "password": credentials.MEMCACHIER_PASSWORD
+if (config.USES_MEMCACHIER) {
+    // External storage API (Memcachier) (requires config)
+    mem = require("memjs").Client.create(config.MEMCACHIER_SERVERS, {
+        "username": config.MEMCACHIER_USERNAME,
+        "password": config.MEMCACHIER_PASSWORD
     });
 } else {
     // Use disk for storage

@@ -1,18 +1,18 @@
 const apn = require("apn");
 const fs = require("fs");
 const tokenUtils = require("./tokens");
-let credentials;
+let config;
 try {
-    credentials = require("./credentials");
+    config = require("../config");
 } catch (e) { // Deployed
-    credentials = process.env;
+    config = process.env;
 }
 
 const options = {
     "token": {
         "key": "apns_push_key.p8",
-        "keyId": credentials.keyId,
-        "teamId": credentials.teamId
+        "keyId": config.keyId,
+        "teamId": config.teamId
     },
     "production": true,
 };

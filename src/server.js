@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
-const push = require("./push.js");
+const push = require("./push");
 const tokens = require("./tokens");
 const app = express();
 
