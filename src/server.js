@@ -18,8 +18,14 @@ app.use(bodyParser.urlencoded({
 // Listen for new tokens
 app.post("/newtoken", (req, res) => {
     if (req.body) {
-        tokens.addToken(req.body.token.toLowerCase(), req.body.bundleId);
-        res.sendStatus(200);
+        if (req.body.token && req.body.bundleId) {
+            tokens.addToken(req.body.token.toLowerCase(), req.body.bundleId);
+            res.sendStatus(200);
+        } else {
+            res.status(500).send({
+                "error": "Need token and bundleId fields"
+            });
+        }
     } else {
         res.status(500).send({
             "error": "Error receiving token"
@@ -30,8 +36,14 @@ app.post("/newtoken", (req, res) => {
 // Listen for new push notification requests
 app.post("/newpush", (req, res) => {
     if (req.body) {
-        push.sendToAll(req.body.bundleId, req.body.body, req.body.title);
-        res.sendStatus(200);
+        if (req.body.bundleId && req.body.body) {
+            push.sendToAll(req.body.bundleId, req.body.body, req.body.title);
+            res.sendStatus(200);
+        } else {
+            res.status(500).send({
+                "error": "Need bundleId and body fields"
+            });
+        }
     } else {
         res.status(500).send({
             "error": "Error receiving message data"
