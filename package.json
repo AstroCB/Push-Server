@@ -12,7 +12,7 @@
   "dependencies": {
     "apn": "^2.2.0",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "memjs": "^1.2.2"
   }
 }
